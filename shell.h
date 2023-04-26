@@ -11,6 +11,7 @@
 #include <errno.h>
 
 #define BUFFER_SIZE 1024
+extern char **environ;
 
 void prompt(char *argv[], char *env[]);
 void exits(char *argv[], char *buf);
