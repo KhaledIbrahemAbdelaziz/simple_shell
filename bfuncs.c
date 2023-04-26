@@ -88,7 +88,7 @@ int run_command(char *command)
 }
 
 /**
- * main_entry - Entry point for the shell program.
+ * main_entry -  Is the main entry point for the shell program.
  *
  * Return: Always 0.
  */
