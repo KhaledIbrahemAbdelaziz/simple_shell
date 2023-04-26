@@ -1,95 +1,41 @@
 #include "shell.h"
 
-int check_mode(void);
-
 /**
- * check_mode - check if the shell in interactive mode or not.
- * Return: 1 if interactive or 0 otherwise.
+ * num_args - counts the number of commandline strings.
+ * @str: an array of strings.
+ * Return: the number of strings.
  */
-
-int check_mode(void)
+int num_args(char *str)
 {
-	return (isatty(STDIN_FILENO) <= 2);
-}
-/**
- * prompt - prints the prompt.
- * @argv: pointer to arguments.
- * @env: pointer to the env variables.
- */
+	int count = 0;
 
-void prompt(char *argv[], char *env[])
-{
-	char *buffer, *token[] = {NULL, NULL};
-	size_t size;
-	ssize_t command;
-	int stat, y, x;
-	pid_t proc_child;
+	char *token = strtok(str, " ");
 
-	while (1)
+	while (token != NULL)
 	{
-		if (check_mode())
-			printf("#cisfun$ ");
-		buffer = malloc(sizeof(char *) * size);
-		command = getline(&buffer, &size, stdin);
-		if (command == -1)
-		{
-			free(buffer);
-			exit(98);
-		}
-		y = 0;
-		while (buffer[y])
-		{
-			if (buffer[y] == '\n')
-				buffer[y] = 0;
-			y++;
-		}
-		x = 0;
-		token[x] = strtok(buffer, " ");
-		while (token[x])
-			token[++x] = strtok(NULL, " ");
-		proc_child = fork();
-		if (proc_child == -1)
-		{
-			free(buffer);
-			exit(98);
-		}
-		if (proc_child == 0)
-		{
-			if (x > 1)
-			{
-				if (execve(token[0], token, env) == -1)
-					printf("%s: No such file or directory\n", argv[0]);
-			}
-			else if (strcompare(token[0], "exit"))
-				exits(argv, buffer);
-			else if (strcompare(token[0], "env"))
-				Env(env);
-			else
-			{
-				if (execve(token[0], token, env) == -1)
-					printf("%s: No such file or directory\n", argv[0]);
-			}
-		}
-		else
-			wait(&stat);
+		count++;
+		token = strtok(NULL, " ");
 	}
+
+	return (count);
 }
 
 /**
- * strcompare - compare between two strings.
- * @str1: first string.
- * @str2: second string.
- * Return: 0 if equal and diff otherwise.
+ * convert_str - converts argumnet string to integer.
+ * @str: an array of strings.
+ *
+ * Return: result * sign
  */
-
-int strcompare(char *str1, char *str2)
+int convert_str(char *str)
 {
-	int i;
+	int num = 0;
 
-	for (i = 0; str1[i] != '\0' && str2[i] != '\0'; i++)
+	while (*str != '\0')
 	{
-		if (str1[i] != str2[i])
-			return ((int)str1[i] - str2[i]);
+		num = num * 10 + (*str - '0');
+		str++;
 	}
-	return (0);
+
+	return (num);
 }
+
