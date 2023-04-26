@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * execute_builtin - executes a command in a child process.
+ * run_builtin - executes a command in a child process.
  * @args: the arguments for the command.
  *
  * Return: 0 on success, -1 on failure.
@@ -39,7 +39,7 @@ int run_builtin(char **args)
 }
 
 /**
- * execute_command - executes a command in a child process.
+ * run_command - executes a command in a child process.
  * @command: teh command to execute.
  *
  * Return: 0 on success, -1 on failure.
