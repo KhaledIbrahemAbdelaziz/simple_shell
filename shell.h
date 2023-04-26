@@ -10,11 +10,11 @@
 #include <unistd.h>
 #include <limits.h>
 #include <errno.h>
+
 #define MAX_COMMAND_LENGTH 100
-
 #define MAX_LINE 1024
-
 #define BUFFER_SIZE 1024
+
 extern char **environ;
 int execute_builtin_command(char **args, char *buf);
 void my_cd(char **args, char **env __attribute__((unused)));
