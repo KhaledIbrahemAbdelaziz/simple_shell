@@ -23,9 +23,10 @@ int run_cmd(char **args, int flag);
 int new_proc(char **args);
 int command_sep(char **args);
 char **parse_command(char *line);
+int run_command(char *command);
 /*built in functions*/
 int execute_builtin_command(char **args, char *buf);
-/*change directory funtion*/
+/*change directory function*/
 void my_cd(char **args, char **env __attribute__((unused)));
 
 void prompt(char *argv[], char *env[]);
