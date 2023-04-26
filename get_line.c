@@ -10,7 +10,7 @@
 char *get_line(void)
 {
 	static char buffer[BUFFER_SIZE];
-	static int point = 0, len = 0;
+	static int point, len;
 	char *line = NULL, c = buffer[point++];
 	int i = 0;
 
