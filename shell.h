@@ -16,10 +16,7 @@
 #define BUFFER_SIZE 1024
 /*environ*/
 extern char **environ;
-/*logic functions*/
-int run(char **args, int flag);
-int run_cmd(char **args, int flag);
-/*seperator function*/
+/*seperator functions*/
 int new_proc(char **args);
 int command_sep(char **args);
 char **parse_command(char *line);
