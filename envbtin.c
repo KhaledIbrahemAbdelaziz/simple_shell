@@ -77,12 +77,11 @@ char *env_set(void)
 }
 
 /**
- * p_env - prints the current environment.
- * @args: an array of strings containing the command.
+ * env_p - prints the current environment.
  *
  * Return: Always 1.
  */
-int p_env(void)
+int env_p(void)
 {
 	char **p_env = environ;
 
