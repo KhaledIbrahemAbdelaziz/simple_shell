@@ -8,6 +8,9 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <errno.h>
+
+#define BUFFER_SIZE 1024
 
 void prompt(char *argv[], char *env[]);
 void exits(char *argv[], char *buf);
