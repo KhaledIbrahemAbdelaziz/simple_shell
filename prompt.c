@@ -11,7 +11,11 @@ int check_mode(void)
 {
 	return (isatty(STDIN_FILENO) <= 2);
 }
-
+/**
+ * prompt - prints the prompt.
+ * @argv: pointer to arguments.
+ * @env: pointer to the env variables.
+ */
 
 void prompt(char *argv[], char *env[])
 {
