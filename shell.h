@@ -16,6 +16,7 @@
 
 #define BUFFER_SIZE 1024
 extern char **environ;
+int execute_builtin_command(char **args, char *buf);
 void my_cd(char **args, char **env __attribute__((unused)));
 void prompt(char *argv[], char *env[]);
 void exits(char *argv[], char *buf);

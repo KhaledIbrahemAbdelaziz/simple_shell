@@ -37,11 +37,13 @@ int my_builtin_command(char *command)
 /**
  * execute_builtin_command - executes a built-in command.
  * @args: the arguments for the command.
- *
+ * @buf: the pinter to buffer.
  * Return: 0 on success, -1 on failure.
  */
-int execute_builtin_command(char **args)
+int execute_builtin_command(char **args, char *buf)
 {
+	exits(args, buf);
+
 	if (strcmp(args[0], "cd") == 0)
 	{
 		if (args[1] == NULL)
@@ -58,11 +60,11 @@ int execute_builtin_command(char **args)
 	}
 	else if (strcmp(args[0], "exit") == 0)
 	{
-		exit_shell();
+		exits(args, buf);
 	}
 	else if (strcmp(args[0], "env") == 0)
 	{
-		print_environment(args);
+		Env(args);
 	}
 
 	return (0);
@@ -128,6 +130,7 @@ int execute_cmd(char *command)
 {
 	char *args[MAX_COMMAND_LENGTH] = {NULL};
 	int num_args = tk_command(command, args);
+	char buf[MAX_COMMAND_LENGTH];
 
 	if (num_args == 0)
 	{
@@ -136,7 +139,7 @@ int execute_cmd(char *command)
 
 	if (my_builtin_command(args[0]))
 	{
-		return (execute_builtin_command(args));
+		return (execute_builtin_command(args, buf));
 	}
 
 	else
