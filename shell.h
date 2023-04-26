@@ -16,6 +16,9 @@
 #define BUFFER_SIZE 1024
 
 extern char **environ;
+int new_proc(char **args);
+int command_sep(char **args);
+char **parse_command(char *line);
 int execute_builtin_command(char **args, char *buf);
 void my_cd(char **args, char **env __attribute__((unused)));
 void prompt(char *argv[], char *env[]);
