@@ -9,13 +9,16 @@
  */
 int tk_command(char *command, char **args)
 {
+	const int MAX_ARGS = 64;
 	int i = 0;
-	char *token = strtok(command, " ");
+	char *saveptr;
+	char *token;
 
-	while (token != NULL)
+	token = strtok_r(command, " ", &saveptr);
+	while (token != NULL && i < MAX_ARGS - 1)
 	{
 		args[i++] = token;
-		token = strtok(NULL, " ");
+		token = strtok_r(NULL, " ", &saveptr);
 	}
 
 	args[i] = NULL;
