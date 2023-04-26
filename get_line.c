@@ -3,52 +3,49 @@
 #define BUFFER_SIZE 1024
 
 /**
- * my_get_line - reads a line of input from stdin.
+ * get_line - reads a line of input from stdin.
  *
  * Return: a pointer to the line of input, or NULL if there is no more input.
  */
-char *my_get_line(void)
+char *get_line(void)
 {
 	static char buffer[BUFFER_SIZE];
-	static int point, size;
-	char *line = NULL;
+	static int point = 0, len = 0;
+	char *line = NULL, c = buffer[point++];
 	int i = 0;
 
 	line = malloc(BUFFER_SIZE);
-	if (point >= size || line == NULL)
+	if (point >= len || line == NULL)
 	{
-		point = 0;
-		size = read(STDIN_FILENO, buffer, BUFFER_SIZE);
 		perror("malloc");
-		exit(1);
-		if (size == -1 || size == 0)
-		{
-			perror("read");
-			exit(1);
-		}
+		exit(EXIT_FAILURE);
 	}
+
 	while (1)
 	{
-		int c = buffer[point];
-
-		line[i] = c;
-		point++;
-		i++;
-		if (c == '\n' || i >= BUFFER_SIZE || point >= size)
+		if (point >= len)
 		{
-			printf("Error: Line too long\n");
-			exit(1);
 			point = 0;
-			size = read(STDIN_FILENO, buffer, BUFFER_SIZE);
-			if (size == -1 || size == 0)
+			len = read(STDIN_FILENO, buffer, BUFFER_SIZE);
+			if (len == -1)
 			{
 				perror("read");
-				exit(1);
+				exit(EXIT_FAILURE);
+			}
+			else if (len == 0)
+			{
+				printf("Error: End of input\n");
+				exit(EXIT_FAILURE);
 			}
 		}
+
+		line[i++] = c;
+		if (c == '\n' || i >= BUFFER_SIZE)
+		{
+			line[i] = '\0';
+			return (line);
+		}
 	}
-	line[i] = '\0';
-	return (line);
 }
 
 
