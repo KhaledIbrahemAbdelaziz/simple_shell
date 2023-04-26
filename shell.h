@@ -8,11 +8,15 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <limits.h>
 #include <errno.h>
+#define MAX_COMMAND_LENGTH 100
+
+#define MAX_LINE 1024
 
 #define BUFFER_SIZE 1024
 extern char **environ;
-
+void my_cd(char **args, char **env __attribute__((unused)));
 void prompt(char *argv[], char *env[]);
 void exits(char *argv[], char *buf);
 void Env(char *env[]);
