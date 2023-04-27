@@ -1,17 +1,17 @@
 #include "shell.h"
 
 /**
- * user_interactive - this function enables users to interact
+ * tok_en - This is a function that enables a non-interactive
+ * user experience, non-interactive
  * Return: Nothing
  */
-void user_interactive(void)
+void tok_en(void)
 {
 	char *line;
 	char **args;
 	int status = -1;
 
 	do {
-		printf("Lab_shell$ ");
 		line = read_input();
 		args = lines_sp(line);
 		status = run_coms(args);
