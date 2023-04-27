@@ -1,18 +1,19 @@
 #include "shell.h"
 
 /**
- * main - UNIX command line interpreter
- * @argc: The number of arguments.
- * @argv: The array of arguments.
- * @env: The current environment.
- * Return: 0 in Success.
+ * main - function that checks if our shell is called
+ * Return: 0 on success
  */
-
-int main(int argc, char *argv[], char *env[])
+int main(void)
 {
-	if (argc == 1)
-		prompt(argv, env);
-
+	if (isatty(STDIN_FILENO) == 1)
+	{
+		user_interactive();
+	}
+	else
+	{
+		tok_en();
+	}
 	return (0);
 }
 
