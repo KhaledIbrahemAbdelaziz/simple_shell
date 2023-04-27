@@ -9,7 +9,7 @@ int check_mode(void);
 
 int check_mode(void)
 {
-	return (isatty(STDIN_FILENO) <= 2);
+	return (isatty(STDIN_FILENO));
 }
 /**
  * prompt - prints the prompt.
