@@ -55,16 +55,17 @@ void prompt(char *argv[], char *env[])
 		}
 		if (proc_child == 0)
 		{
-			if (x > 1)
-			{
-				if (execve(token[0], token, env) == -1)
-					printf("%s: No such file or directory\n", argv[0]);
-			}
-			else
-			{
-				if (execve(token[0], token, env) == -1)
-					printf("%s: No such file or directory\n", argv[0]);
-			}
+			/**
+			 * if (x > 1)
+			 * {
+			 * if (execve(token[0], token, env) == -1)
+			 * printf("%s: No such file or directory\n", argv[0]);
+			 * }
+			 * else
+			 * {
+			 */
+			if (execve(token[0], token, env) == -1)
+				printf("%s: No such file or directory\n", argv[0]);
 		}
 		else
 			wait(&stat);
