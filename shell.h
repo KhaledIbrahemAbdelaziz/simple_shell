@@ -11,7 +11,8 @@
 #include <limits.h>
 #include <ctype.h>
 #include <errno.h>
-
+#define PROMPT "$ "
+#define DELIM " \t\r\n\a"
 #define MAX_COMMAND_LENGTH 100
 #define MAX_LINE 1024
 #define HISTORY_MAXITEMS 100
@@ -29,7 +30,12 @@ typedef struct passdata
 {
 	int runfd;
 } data_r;
-void prompt(char *argv[], char *env[]);
+
+int character(int i);
+int checker(char i, char *delimiter);
+int command_mode(data_r *data);
+void prompt(data_r *data);
+int non_interactive(data_r *data);
 void exits(char *argv[], char *buf);
 void Env(char *env[]);
 int strcompare(char *str1, char *str2);
