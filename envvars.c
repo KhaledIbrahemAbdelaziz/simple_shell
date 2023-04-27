@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * env - prints enviroment variables
+ * env - prints the enviroment variables
  * @args: arguments
  * Return: 1 on success, otherwise return 0
  */
