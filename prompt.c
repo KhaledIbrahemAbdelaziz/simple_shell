@@ -60,10 +60,12 @@ void prompt(char *argv[], char *env[])
 				if (execve(token[0], token, env) == -1)
 					printf("%s: No such file or directory\n", argv[0]);
 			}
-			else if (strcompare(token[0], "exit"))
-				exits(argv, buffer);
-			else if (strcompare(token[0], "env"))
-				Env(env);
+			/**
+			 * else if (strcompare(token[0], "exit"))
+			 * exits(argv, buffer);
+			 * else if (strcompare(token[0], "env"))
+			 * Env(env);
+			 */
 			else
 			{
 				if (execve(token[0], token, env) == -1)
