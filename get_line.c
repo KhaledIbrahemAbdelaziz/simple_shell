@@ -1,51 +1,37 @@
 #include "shell.h"
 
-#define BUFFER_SIZE 1024
-
 /**
- * get_line - reads a line of input from stdin.
- *
- * Return: a pointer to the line of input, or NULL if there is no more input.
+ * get_line - gets the user input.
+ * Return: a pointer to the user input.
  */
 char *get_line(void)
 {
-	static char buffer[BUFFER_SIZE];
-	static int point, len;
-	char *line = NULL, c = buffer[point++];
-	int i = 0;
+	int j = 0;
+	int buff_size = 1024;
+	char *line = malloc(buff_size * sizeof(char));
+	char wan;
 
-	line = malloc(BUFFER_SIZE);
-	if (point >= len || line == NULL)
+	if (line == NULL)
 	{
-		perror("malloc");
+		fprintf(stderr, "Error: malloc failure\n");
 		exit(EXIT_FAILURE);
 	}
-
-	while (1)
+	while ((wan = getchar()) != '\n')
 	{
-		if (point >= len)
+		if (wan == EOF)
 		{
-			point = 0;
-			len = read(STDIN_FILENO, buffer, BUFFER_SIZE);
-			if (len == -1)
-			{
-				perror("read");
-				exit(EXIT_FAILURE);
-			}
-			else if (len == 0)
-			{
-				printf("Error: End of input\n");
-				exit(EXIT_FAILURE);
-			}
+			free(line);
+			return (NULL);
 		}
-
-		line[i++] = c;
-		if (c == '\n' || i >= BUFFER_SIZE)
+		if (j >= buff_size)
 		{
-			line[i] = '\0';
-			return (line);
+			buff_size = 2 * buff_size;
+			line = realloc(line, buff_size);
 		}
+		line[j++] = wan;
 	}
+	line[j] = '\0';
+	return (line);
 }
 
 
