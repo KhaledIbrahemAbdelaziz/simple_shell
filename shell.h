@@ -19,7 +19,16 @@
 #define BUFFER_SIZE 1024
 /*environ*/
 extern char **environ;
-
+/**
+ * struct passdata - carries arguments to pass into a function
+ * @arg: arguments
+ * @argv: path to the current cmd
+ * @runfd: fd to read line input
+ */
+typedef struct passdata
+{
+	int runfd;
+} data_r;
 void prompt(char *argv[], char *env[]);
 void exits(char *argv[], char *buf);
 void Env(char *env[]);
