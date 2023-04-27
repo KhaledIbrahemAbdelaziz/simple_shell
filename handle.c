@@ -17,7 +17,7 @@ int help(char **args)
 	(void)(**args);
 
 	printf("\n---help---\n");
-	printf("Enter an command and hit the return value\n");
+	printf("Enter an command and hit the return button\n");
 	printf("This are the Builtin commands:\n");
 	for (; i < sizeof(builtin_func_list) / sizeof(char *); i++)
 	{
