@@ -13,6 +13,8 @@
 #define TOK_DELIM " \t\r\n\a\""
 /*BUFFER_SIZE def*/
 #define BUFFER_SIZE 1024
+/*MAX_LINE def*/
+#define MAX_LINE 1024
 /*environ definition*/
 extern char **environ;
 /*Task: interactive*/
@@ -21,6 +23,11 @@ void user_interactive(void);
 char *read_input(void);
 char **lines_sp(char *line);
 int run_coms(char **args);
+/*parser*/
+int new_proc(char **args);
+char **parse_command(char *line);
+int command_sep(char **args);
+int new_proc(char **args);
 /* Forking and processes  */
 int forks(char **args);
 /* non - interactive mode fun*/
