@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * forks - Creates a new process
+ * forks - Function that creates a new process
  * @args: Array of strings that contains the command
  * Return: 1 if success, otherwise 0
  */
