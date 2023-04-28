@@ -3,7 +3,7 @@
 /**
  * cd - Changes the current working directory
  * @args: The dir to change to.
- * Return: 1 one success, 0 otherwise.
+ * Return: -1 one success, 0 otherwise.
  */
 int cd(char **args)
 {
@@ -18,6 +18,6 @@ int cd(char **args)
 			perror("%s:Error: no such file or directory\n");
 		}
 	}
-	return (1);
+	return (-1);
 }
 
