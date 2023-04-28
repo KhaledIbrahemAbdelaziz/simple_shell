@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <limits.h>
 
 /**
  * cd - Changes the current working directory
@@ -7,17 +8,44 @@
  */
 int cd(char **args)
 {
+	char *dir, cwd[PATH_MAX];
+
 	if (args[1] == NULL)
 	{
-		fprintf(stderr, "Expected argument to \"cd\"\n");
+		dir = getenv("HOME");
+		if (dir == NULL)
+		{
+			fprintf(stderr, "No home directory found\n");
+			return (0);
+		}
+	}
+	else if (strcmp(args[1], "-") == 0)
+	{
+		dir = getenv("OLDPWD");
+		if (dir == NULL)
+		{
+			fprintf(stderr, "cd: OLDPWD not set\n");
+			return (0);
+		}
+		printf("%s\n", dir);
 	}
 	else
 	{
-		if (chdir(args[1]) != 0)
-		{
-			perror("%s:Error: no such file or directory\n");
-		}
+		dir = args[1];
+	}
+	if (chdir(dir) != 0 || (getcwd(cwd, sizeof(cwd)) == NULL))
+	{
+		perror("cd");
+		perror("getcwd");
+		return (0);
+	}
+	if (setenv("OLDPWD", getenv("PWD"), 1) == -1 || (setenv("PWD", cwd, 1) == -1))
+	{
+		perror("setenv");
+		perror("setenv");
+		return (0);
 	}
 	return (-1);
+
 }
 
