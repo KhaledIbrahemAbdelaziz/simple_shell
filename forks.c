@@ -15,13 +15,13 @@ int forks(char **args)
 	{
 		if (execvp(args[0], args) == -1)
 		{
-			perror("error in new_process: child process");
+			perror("error in forks: child process");
 		}
 		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
 	{
-		perror("error in new_process: forking");
+		perror("error in forks: forking");
 	}
 	else
 	{
