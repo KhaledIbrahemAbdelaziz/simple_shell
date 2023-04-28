@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * line_sp - this function splits string
+ * lines_sp - this function splits string
  * @line: The string
  * Return: The pointer to the array
  */
@@ -19,7 +19,7 @@ char **lines_sp(char *line)
 	}
 	token = strtok(line, TOK_DELIM);
 	while (token != NULL)
-	{	
+	{
 		if (token[0] == '#')
 		{
 			break;
