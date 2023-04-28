@@ -7,16 +7,37 @@
  */
 int set_env(char **args)
 {
+	char *var, *val;
+
 	if (args[1] == NULL || args[2] == NULL)
 	{
 		fprintf(stderr, "setenv: invalid arguments\n");
 		return (0);
 	}
-	if (setenv(args[1], args[2], 1)  == -1)
+	var = strdup(args[1]);
+
+	if (var == NULL)
 	{
-		perror("setenv");
+		perror("strdup");
 		return (0);
 	}
+	val = strdup(args[2]);
+
+	if (val == NULL)
+	{
+		perror("strdup");
+		free(var);
+		return (0);
+	}
+	if (setenv(var, val,  1)  == -1)
+	{
+		perror("setenv");
+		free(var);
+		free(val);
+		return (0);
+	}
+	free(var);
+	free(val);
 	return (-1);
 }
 
