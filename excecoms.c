@@ -11,12 +11,16 @@ int run_coms(char **args)
 		"cd",
 		"env",
 		"help",
+		"setenv",
+		"unsetenv",
 		"exit"
 	};
 	int (*builtin_func[])(char **) = {
 		&cd,
 		&env,
 		&help,
+		&set_env,
+		&unset_env,
 		&my_exit
 	};
 	unsigned long int j = 0;

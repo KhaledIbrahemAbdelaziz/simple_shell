@@ -11,6 +11,8 @@ int help(char **args)
 		"cd",
 		"env",
 		"help",
+		"setenv",
+		"unsetenv",
 		"exit"
 	};
 	unsigned long int i = 0;
