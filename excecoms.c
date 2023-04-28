@@ -19,17 +19,17 @@ int run_coms(char **args)
 		&help,
 		&my_exit
 	};
-	long unsigned int i = 0;
+	unsigned long int j = 0;
 
 	if (args[0] == NULL)
 	{
 		return (-1);
 	}
-	for (; i < sizeof(builtin_func_list) / sizeof(char *); i++)
+	for (; j < sizeof(builtin_func_list) / sizeof(char *); j++)
 	{
-		if (strcmp(args[0], builtin_func_list[i]) == 0)
+		if (strcmp(args[0], builtin_func_list[j]) == 0)
 		{
-			return ((*builtin_func[i])(args));
+			return ((*builtin_func[j])(args));
 		}
 	}
 	return (forks(args));
