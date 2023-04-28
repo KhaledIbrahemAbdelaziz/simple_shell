@@ -15,9 +15,9 @@ int cd(char **args)
 	{
 		if (chdir(args[1]) != 0)
 		{
-			perror("Error in cd.c: Changing dir\n");
+			perror("%s:Error: no such file or directory\n");
 		}
 	}
-	return (-1);
+	return (1);
 }
 
