@@ -13,7 +13,7 @@ int help(char **args)
 		"help",
 		"exit"
 	};
-	long unsigned int i = 0;
+	unsigned long int i = 0;
 	(void)(**args);
 
 	printf("\n---help---\n");
